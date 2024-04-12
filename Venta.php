@@ -53,16 +53,10 @@ class Venta{
         $this->precioFinal = $newPrecioFinal;
     }
 
-    /*
-    recibe por parámetro un objeto moto y lo incorpora a la colección de motos de la venta, 
-    siempre y cuando sea posible la venta. El método cada vez que incorpora una moto a la venta, 
-    debe actualizar la variable instancia precio final de la venta.
-    Utilizar el método que calcula el precio de venta de la moto donde crea necesario
-    */
     public function incorporarMoto($objMoto){
         $motoIncorporada = 0;
         $precioFinal = $this->getPrecioFinal();
-        if($objMoto->getActivaVenta()){#si la moto está activa (posible la venta)
+        if(($objMoto != null)&& ($objMoto->getActivaVenta())){#si la moto está activa (posible la venta)
             
             $colMotos = $this->getcolObjMotos();
             $colMotos[] = $objMoto;

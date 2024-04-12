@@ -71,10 +71,7 @@ class Empresa{
     {
         $this->colObjVentas = $colObjVentas;
     }
-    /* recorre la colección de motos de la Empresa y
-    retorna la referencia al objeto moto cuyo código 
-    coincide con el recibido por parámetro.
-    */
+    
     public function retornarMoto($codigoMoto){
         $motoEncontrada = null;
         $i = 0;
@@ -87,43 +84,32 @@ class Empresa{
         }    
         return $motoEncontrada;    
     }
-        /* Implementar el método registrarVenta($colCodigosMoto, $objCliente) método que recibe por
-    parámetro una colección de códigos de motos, la cual es recorrida, y por cada elemento de la colección
-    se busca el objeto moto correspondiente al código y se incorpora a la colección de motos de la instancia
-    Venta que debe ser creada. Recordar que no todos los clientes ni todas las motos, están disponibles
-    para registrar una venta en un momento determinado.
-    El método debe setear los variables instancias de venta que corresponda y retornar el importe final de la
-    venta. */
+    
 
-    #funcion auxiliar para verificar si existe al menos un codigo ingresado dentro de las motos que tiene la empresa.
-    /* public function existeUnCodigo($colCodigosMoto){
-        $coleccionMotos = $this->getColObjMotos();
-        foreach($coleccionMotos as $moto){
-            if($moto->)
-        }
-    } */
     public function registrarVenta($colCodigosMoto, $objCliente){
         $precioVenta = 0;
         $colObjMotos = [];
         $fechaVenta = date('Y-m-d');
-        $venta = new Venta(null,$fechaVenta,$objCliente,$colObjMotos, $precioVenta);
+        $nroVenta = $this->getColObjVentas() == null ? 1 : count($this->getColObjVentas())+1;  
         
+        $venta = new Venta($nroVenta,$fechaVenta,$objCliente,$colObjMotos, $precioVenta);
         foreach($colCodigosMoto as $codigo){
-            if($this->retornarMoto($codigo) != null){
-                
-                $precioVenta += $this->retornarMoto($codigo)->darPrecioVenta(); #voy sumando los precios de venta de las motos
-                $venta->incorporarMoto($this->retornarMoto($codigo));
-                
-            }
+            
+            $moto = $this->retornarMoto($codigo);
+            $venta->incorporarMoto($moto);
         }
+        
+        $colVentas = $this->getColObjVentas(); 
+        if($venta->getPrecioFinal() > 0){
+            $colVentas[] = $venta;
+            $this->setColObjVentas($colVentas); 
+        }
+        
         
         return $precioVenta;
     }
 
 
-    /* Implementar el método retornarVentasXCliente($tipo,$numDoc) que recibe por parámetro el tipo y
-    número de documento de un Cliente y retorna una colección con las ventas realizadas al cliente.
-    */
     public function retornarVentasXCliente($tipo, $nroDoc){
         $i = 0;
         $j = 0;
@@ -131,8 +117,10 @@ class Empresa{
         $clienteEncontrado = false;
         $ventaEncontrada = false;
         while($i < count($this->getColObjClientes()) && ($clienteEncontrado == false)){
+
             if($this->getColObjClientes()[$i]->getTipoDoc() == $tipo && $this->getColObjClientes()[$i]->getNroDoc() == $nroDoc){
                 $clienteEncontrado = true;
+
                 while ($j < count($this->getColObjVentas()) && ($ventaEncontrada ==false)){
                     if($this->getColObjVentas()[$j]->getObjCliente()->getTipoDoc() == $tipo &&
                     $this->getColObjVentas()[$j]->getObjCliente()->getNroDoc() == $nroDoc){
