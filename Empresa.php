@@ -135,6 +135,31 @@ class Empresa{
         return $colVentas;
     }
 
+    /* recorre la coleccion de ventas realizadas por la empresa
+    y retorna el importe total de ventas Nacionales  */
+    public function informarSumaVentasNacionales(){
+        $vtasNacionales = 0;
+        foreach($this->getColObjVentas() as $venta){
+            $vtasNacionales += $venta->retornarTotalVentaNacional();
+        }
+        return $vtasNacionales;
+    }
+
+    /* recorre la coleccion de ventas realizadas por la empresa
+    retorna una coleccion de ventas de motos importadas.
+    Si una de las motos es importada la venta debe ser informada(incorporada) */
+    public function informarVentasImportadas(){
+
+        $colVtasImportadas = [];
+        foreach($this->getColObjVentas() as $venta){
+            if(count($venta->retornarMotosImportadas()) > 0){
+                $colVtasImportadas[] = $venta;
+            }
+        }
+        return $colVtasImportadas;
+    }
+
+
 
     public function arrayToString($coleccion){
         $stringObjetos = "";

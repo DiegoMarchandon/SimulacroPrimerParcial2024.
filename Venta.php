@@ -79,6 +79,32 @@ class Venta{
         
     }
 
+    /* retorna la sumatoria del precio venta de cada una de las motos Nacionales
+    vinculadas a la venta */
+    public function retornarTotalVentaNacional(){
+        $preciosMotosNacionales = 0;
+        foreach($this->getColObjMotos() as $moto){
+            if($moto instanceof MotoNacional){
+                $preciosMotosNacionales += $moto->darPrecioVenta();
+            }
+        }
+        $preciosMotosNacionales;
+    }
+
+    /* retorna una coleccion de motos importadas vinculadas a la venta.
+    Si la venta solo tiene motos Nacionales la coleccion retornada estará vacía. */
+    public function retornarMotosImportadas(){
+        $colMotosImportadas = [];
+        foreach($this->getcolObjMotos() as $moto){
+            if($moto instanceof MotoImportada){
+                $colMotosImportadas[] = $moto;
+            }
+        }
+        return $colMotosImportadas;
+    }
+
+    
+
     public function __toString()
     {
         return "numero de venta: ".$this->getNumero()."\n".

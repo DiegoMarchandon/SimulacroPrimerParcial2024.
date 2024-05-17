@@ -66,6 +66,8 @@ class Moto{
         $añosTranscurridos = 2024 - $this->getAñoFab();
         if($this->getActivaVenta() == true){
             $venta = $this->getCosto()  + ($this->getCosto() *($añosTranscurridos*$this->getPorcentaje()));
+        }else{
+            $venta = -1;
         }
         return $venta;
     }
