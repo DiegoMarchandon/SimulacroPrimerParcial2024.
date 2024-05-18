@@ -25,31 +25,20 @@ $obMoto4 = new MotoImportada(14, 12499900, 2020, "Pitbike Enduro Motocross Apoll
 $empresa = new Empresa("Alta Gama","Av argentina 123",[$objCliente1,$objCliente2],[$obMoto1,$obMoto2,$obMoto3,$obMoto4],[]);
 
 # 4) invocar al metodo registrarVenta()
-$empresa->registrarVenta([11, 12, 13, 14],$objCliente2); #retorna 7831400
+$empresa->registrarVenta([11, 12, 13, 14],$objCliente2);
 
 # 5) invocar al método registrarVenta()
 $empresa->registrarVenta([13, 14], $objCliente2);
 
 # 6) invocar al metodo registrarVenta()
-$empresa->registrarVenta([14, 2],$objCliente2); #retorna 0
+$empresa->registrarVenta([14, 2],$objCliente2); 
 
 
-# 7) invocar al metodo registrarVenta() 
+#  invocar al metodo registrarVenta() 
 $empresa->registrarVenta([2],$objCliente2);
-# 7) invocar al método informarVentasImportadas(). Visualizar el resultado obtenido
+#  invocar al método informarVentasImportadas(). Visualizar el resultado obtenido
 $empresa->informarSumaVentasNacionales();
 
-# 8) invocar al método informarSumaVentasNacionales(). Visualizar el resultado obtenido
-
-# 9) realizar un echo de la variable empresa creada en 2. 
-
-# 8) retornarVentasXcliente();
-// print_r($empresa->retornarVentasXCliente("DNI",42123123));
-
-# 9) retornarVentasXcliente();
-
-// print_r($empresa->retornarVentasXCliente("DNI",43321321));
-
-#10)
+# realizar un echo de la variable empresa creada en 2. 
 echo $empresa;
 
