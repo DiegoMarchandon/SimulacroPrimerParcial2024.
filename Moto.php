@@ -63,6 +63,8 @@ class Moto{
     
     public function darPrecioVenta(){
         $venta = 0;
+        // $añoActual = intval(date("Y"));
+        // $añosTranscurridos = añoActual - $this->getAñoFab();
         $añosTranscurridos = 2024 - $this->getAñoFab();
         if($this->getActivaVenta() == true){
             $venta = $this->getCosto()  + ($this->getCosto() *($añosTranscurridos*$this->getPorcentaje()));

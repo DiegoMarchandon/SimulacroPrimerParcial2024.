@@ -9,6 +9,8 @@ class MotoNacional extends Moto{
     {
         parent::__construct($codigo, $costo, $añoFab, $descripcion, $porcentaje, $activaVenta);
         $this->porcentajeDescuento = $porcentajeDescuento;
+        # en caso de que el parámetro sea null se inicializará en 15
+        // $this->porcentajeDescuento = $porcentajeDescuento ?? 15; 
     }
 
     /**
@@ -34,7 +36,10 @@ class MotoNacional extends Moto{
     public function darPrecioVenta()
     {
         $precioVta = parent::darPrecioVenta();
-        $precioVta = $precioVta - ($precioVta * $this->getPorcentajeDescuento());
+        if($precioVta != -1){
+
+            $precioVta = $precioVta - ($precioVta * $this->getPorcentajeDescuento());
+        }
         return $precioVta;
     }
 

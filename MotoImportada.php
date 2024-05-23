@@ -61,7 +61,10 @@ class MotoImportada extends Moto{
         }
         return $venta; */
         $precioVta = parent::darPrecioVenta();
-        $precioVta = $precioVta + $this->getImpuestosImportacion();
+        if($precioVta != -1){
+
+            $precioVta += $this->getImpuestosImportacion();
+        }
         return $precioVta;
     }
 
